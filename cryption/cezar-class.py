@@ -1,7 +1,10 @@
 from spellchecker import SpellChecker
+
+
 class Cezar:
     min_chr = 0
     max_chr = 0x110000
+
     def __init__(self):
         self.operations = {
             'cryption': self.cryption,
@@ -9,9 +12,9 @@ class Cezar:
             'brut_force': self.brut_force
         }
         self.format_print = {
-            'cryption': lambda string : 'Crypt string is {}'.format(string),
-            'encryption': lambda string : 'Encrypted string is {}'.format(string),
-            'brut_force': lambda string : 'Brut forced strings are {}'.format(string)
+            'cryption': lambda string: 'Crypt string is {}'.format(string),
+            'encryption': lambda string: 'Encrypted string is {}'.format(string),
+            'brut_force': lambda string: 'Brut forced strings are {}'.format(string)
         }
         self.spell = SpellChecker()
 
@@ -43,24 +46,28 @@ class Cezar:
                 encrypted_strings.append(encrypted_string)
         return encrypted_strings
 
-    def is_word_exists(self, string = '' or ['']):
-        if string == self.spell.correction(string):
-            return True
-        words = string.split(' ')
-        for word in words:
+    def is_word_exists(self, string = None):
+        if string:
+            if string == self.spell.correction(string):
+                return True
+            words = string.split(' ')
+            for word in words:
                 if word == self.spell.correction(word):
                     return True
+        return False
+
 
 cezar = Cezar()
 
-operation_type = input(f'Input operation type or press Enter for cryption by default\nOperation types: {cezar.operations.keys()}\n')
+operation_type = input(
+    f'Input operation type or press Enter for cryption by default\nOperation types: {cezar.operations.keys()}\n')
 operation_type = operation_type if operation_type in cezar.operations else 'cryption'
 
 step = 3
 if operation_type != 'brut_force':
     try:
         step = int(input('Input step or press Enter for set 3 by default\n'))
-    except:
+    except Exception:
         pass
 
 string = input(f'Input string for {operation_type}\n')

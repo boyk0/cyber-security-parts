@@ -25,37 +25,40 @@ class Trifemiy:
 
     def cryption(self, string = '', k = 3, langauge = languages['EN']):
         m = 0
-        cryptedString = ''
+        crypted_string = ''
         while m != len(string):
             if string[m] in self.alphabets[langauge]['small']:
                 idx = self.alphabets[langauge]['small'].find(string[m])
                 l = (m + k + idx) % self.alphabets[langauge]['lettersCount']
-                cryptedString += self.alphabets[langauge]['small'][l]
+                crypted_string += self.alphabets[langauge]['small'][l]
             elif string[m] in self.alphabets[langauge]['capital']:
                 idx = self.alphabets[langauge]['capital'].find(string[m])
                 l = (m + k + idx) % self.alphabets[langauge]['lettersCount']
-                cryptedString += self.alphabets[langauge]['capital'][l]
+                crypted_string += self.alphabets[langauge]['capital'][l]
             else:
-                cryptedString += string[m]
+                crypted_string += string[m]
             m += 1
 
-        return cryptedString
+        return crypted_string
 
     def encryption(self, string = '', k = 3, langauge = languages['EN']):
         m = 0
-        encryptedString = ''
+        encrypted_string = ''
         while m != len(string):
             if string[m] in self.alphabets[langauge]['small']:
                 l = self.alphabets[langauge]['small'].find(string[m])
-                encryptedString += self.alphabets[langauge]['small'][(l - (m + k)) % self.alphabets[langauge]['lettersCount']]
+                encrypted_string += self.alphabets[langauge]['small'][
+                    (l - (m + k)) % self.alphabets[langauge]['lettersCount']]
             elif string[m] in self.alphabets[langauge]['capital']:
                 l = self.alphabets[langauge]['capital'].find(string[m])
-                encryptedString += self.alphabets[langauge]['capital'][(l - (m + k)) % self.alphabets[langauge]['lettersCount']]
+                encrypted_string += self.alphabets[langauge]['capital'][
+                    (l - (m + k)) % self.alphabets[langauge]['lettersCount']]
             else:
-                encryptedString += string[m]
+                encrypted_string += string[m]
             m += 1
 
-        return encryptedString
+        return encrypted_string
+
 
 trifemiy = Trifemiy()
 
