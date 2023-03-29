@@ -20,7 +20,7 @@ n = 7
 
 m = sum(private_key) + 10
 
-def gcd_extended(a, b):
+def gcd_extended(a: int, b: int):
     if a == 0 :
         return b, 0, 1
     gcd1, x1, y1 = gcd_extended(b % a, a)
@@ -32,7 +32,9 @@ gcd1, x, y = gcd_extended(n, m)
 
 mn = (x % m + m) % m
 
-def generate_key_based_on_private_key(private_key = []):
+def generate_key_based_on_private_key(private_key: list[int] = None):
+    if not private_key:
+        return []
     public_key = []
     for number in private_key:
         public_key.append(number * n % m)
@@ -40,14 +42,18 @@ def generate_key_based_on_private_key(private_key = []):
         file.write(' '.join(map(str, public_key)))
     return public_key
 
-def myltiplication(message = '', key = []):
+def myltiplication(message: str = '', key: list[int] = None):
+    if not key:
+        return 0
     s = 0
     for i in range(len(message)):
         if message[i] == '1':
             s += key[i]
     return s
 
-def encryption(message_for_encryption = '', public_key = []):
+def encryption(message_for_encryption: str = '', public_key: list[int] = None):
+    if not public_key:
+        return []
     l = len(public_key)
     message_partials = [message_for_encryption[x:x + l] for x in range(0, len(message_for_encryption), l)]
     encrypted_value = []
@@ -55,7 +61,9 @@ def encryption(message_for_encryption = '', public_key = []):
         encrypted_value.append(myltiplication(partial, public_key))
     return encrypted_value
 
-def decryption(message_for_decryption = [], private_key = []):
+def decryption(message_for_decryption: list[int] = None, private_key: list[int] = None):
+    if not message_for_decryption or not private_key:
+        return ''
 
     partial_values = []
     for part in message_for_decryption:

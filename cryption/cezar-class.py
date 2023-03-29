@@ -18,25 +18,25 @@ class Cezar:
         }
         self.spell = SpellChecker()
 
-    def cryption(self, string = '', step = 3):
+    def cryption(self, string: str = '', step: int = 3):
         crypto_string = ''
         for char in string:
             crypto_string += chr(self.get_char_number(char, step))
         return crypto_string
 
-    def get_char_number(self, char = '', step = 3):
+    def get_char_number(self, char: str = '', step: int = 3):
         n = ord(char)
         if n + step < self.min_chr or n + step > self.max_chr:
             return abs(self.max_chr - abs(n + step))
         return n + step
 
-    def encryption(self, string = '', step = 3):
+    def encryption(self, string: str = '', step: int = 3):
         encrypted_string = ''
         for char in string:
             encrypted_string += chr(self.get_char_number(char, -step))
         return encrypted_string
 
-    def brut_force(self, string = '', step = 0):
+    def brut_force(self, string: str = '', step: int = 0):
         encrypted_strings = []
         for i in range(-74, 74):
             encrypted_string = ''
@@ -46,7 +46,7 @@ class Cezar:
                 encrypted_strings.append(encrypted_string)
         return encrypted_strings
 
-    def is_word_exists(self, string = None):
+    def is_word_exists(self, string: str = None):
         if string:
             if string == self.spell.correction(string):
                 return True

@@ -1,7 +1,7 @@
 from random import randint
 
 
-def generate_key(binary_array = None):
+def generate_key(binary_array: list = None):
     array_key = []
     if binary_array:
         for b in binary_array:

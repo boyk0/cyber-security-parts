@@ -1,11 +1,11 @@
-def cryption(string = '', step = 3):
+def cryption(string: str = '', step: int = 3):
     crypto_string = ''
     for char in string:
         crypto_string += chr(ord(char) + step)
     return crypto_string
 
 
-def encryption(string = '', step = 3):
+def encryption(string: str = '', step: int = 3):
     encrypted_string = ''
     for char in string:
         encrypted_string += chr(ord(char) - step)
